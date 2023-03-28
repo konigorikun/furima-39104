@@ -1,24 +1,69 @@
-# README
+# テーブル設計
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## users テーブル
 
-Things you may want to cover:
+| Column             | Type     | Options                    |
+| ------------------ | -------- | -------------------------- |
+| email              | string   | null: false,  unique: true |
+| encrypted_password | string   | null: false                |
+| nickname           | string   | null: false                |
+| firstname          | string   | null: false                |
+| lastname           | string   | null: false                |
+| firstname_kana     | string   | null: false                |
+| lastname_kana      | string   | null: false                |
+| date_of_birthday   | datetime | null: false                |
 
-* Ruby version
+### Association
 
-* System dependencies
+- has_many :items 
+- has_many :orders
 
-* Configuration
+## items テーブル
 
-* Database creation
+| Column                 | Type       | Options                        |
+| ---------------------- | ---------- | ------------------------------ |
+| name                   | string     | null: false                    |
+| detail                 | text       | null: false                    |
+| category               | string     | null: false                    |
+| condition              | text       | null: false                    |
+| delivery_charge        | integer    | null: false                    |
+| ship_from_organization | string     | null: false                    |
+| days_to_ship           | integer    | null: false                    |
+| cost                   | integer    | null: false                    |
+| sailer                 | string     | null: false                    |
+| user_id                | references | null: false, foreign_key: true |
 
-* Database initialization
+### Association
 
-* How to run the test suite
+- belongs_to :user
+- has_one :order
 
-* Services (job queues, cache servers, search engines, etc.)
+## orders テーブル
 
-* Deployment instructions
+| Column      | Type       | Options                        |
+| ----------- | ---------- | ------------------------------ |
+| buyer       | string     | null: false                    |
+| user_id     | references | null: false, foreign_key: true |
+| item_id     | references | null: false, foreign_key: true |
 
-* ...
+### Association
+
+- belongs_to :user 
+- belongs_to :item
+- has_one :shipping_addresses
+
+## shipping_addresses テーブル
+
+| Column        | Type       | Options                        |
+| ------------- | ---------- | ------------------------------ |
+| address       | string     | null: false                    |
+| post_number   | integer    | null: false                    |
+| prefecture    | string     | null: false                    |
+| municipality  | string     | null: false                    |
+| house_number  | integer    | null: false                    |
+| building_name | string     |                                |
+| phone_number  | integer    | null: false                    |
+| order_id      | references | null: false, foreign_key: true |
+
+### Association
+- belongs_to :order
