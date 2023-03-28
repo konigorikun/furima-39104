@@ -54,7 +54,6 @@
 
 | Column                    | Type         | Options                        |
 | ------------------------- | ------------ | ------------------------------ |
-| address                   | string       | null: false                    |
 | post_number               | string       | null: false                    |
 | ship_from_organization_id | integer      | null: false                    |
 | municipality              | string       | null: false                    |
