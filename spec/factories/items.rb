@@ -12,7 +12,6 @@ FactoryBot.define do
     ship_from_organization      {ShipFromOrganization.all.sample}
     days_to_ship                {DaysToShip.all.sample}
     cost                        {Faker::Number.between(from: 300, to: 9999_999)}
-    image                       {Faker::Lorem.sentence}
     association :user
   end
 end

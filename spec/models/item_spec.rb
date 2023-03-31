@@ -28,34 +28,34 @@ RSpec.describe Item, type: :model do
         expect(@item.errors.full_messages).to include("Detail can't be blank")
       end
       it 'category空では保存できない' do
-        @item.category_id = ''
+        @item.category_id = 1
         @item.valid?
         expect(@item.errors.full_messages).to include("Category Select")
       end
       it 'condition空では保存できない' do
-        @item.condition_id = ''
+        @item.condition_id = 1
         @item.valid?
         expect(@item.errors.full_messages).to include("Condition Select")
       end
       it 'delivery_charge空では保存できない' do
-        @item.delivery_charge_id = ''
+        @item.delivery_charge_id = 1
         @item.valid?
         expect(@item.errors.full_messages).to include("Delivery charge Select")
       end
       it 'ship_from_organization空では保存できない' do
-        @item.ship_from_organization_id = ''
+        @item.ship_from_organization_id = 1
         @item.valid?
         expect(@item.errors.full_messages).to include("Ship from organization Select")
       end
       it 'days_to_ship空では保存できない' do
-        @item.days_to_ship_id = ''
+        @item.days_to_ship_id = 1
         @item.valid?
         expect(@item.errors.full_messages).to include("Days to ship Select")  
       end
       it 'cost空では保存できない' do
         @item.cost = ''
         @item.valid?
-        expect(@item.errors.full_messages).to include("Cost can't be blank")
+        expect(@item.errors.full_messages).to include("Cost Please enter with in the numeric range")
       end
       it 'costが半角数値以外の文字（平仮名・漢字・英数字・記号）が含まれていると保存できない' do
         @item.cost = 'aaaa'

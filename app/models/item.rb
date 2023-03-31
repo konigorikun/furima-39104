@@ -16,8 +16,8 @@ class Item < ApplicationRecord
   validates :ship_from_organization_id, numericality: { other_than: 1 , message: "Select"}
   validates :days_to_ship_id, numericality: { other_than: 1 , message: "Select"}
   
-  with_options presence: true, format: { with: /\A[0-9]+\z/ } do
+  with_options presence: true do
     validates :cost, numericality: { only_integer: true, greater_than_or_equal_to: 300, less_than_or_equal_to: 9_999_999 },
-                     presence: { message: "can't be blank"}
+                     presence: { message: "Please enter with in the numeric range"}
   end
 end
