@@ -3,9 +3,9 @@ class OrderShippingAddress
   attr_accessor :post_number, :ship_from_organization_id, :municipality, :house_number, :building_name, :phone_number, :user_id, :item_id
 
   with_options presence: true do
-    validates :house_number, :municipality, :user_id, :item_id
     validates :post_number, format: {with: /\A[0-9]{3}-[0-9]{4}\z/, message: "is invalid. Include hyphen(-)"}
     validates :ship_from_organization_id, numericality: {other_than: 1, message: "can't be blank"}
+    validates :municipality, :house_number, :user_id, :item_id
     validates :phone_number, format: {with: /\A\d{11}\z/, message: "is invalid."}
   end
 
