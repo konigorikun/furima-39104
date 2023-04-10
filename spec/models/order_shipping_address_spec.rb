@@ -26,12 +26,12 @@ RSpec.describe OrderShippingAddress, type: :model do
       it 'post_numberにはハイフンがないと保存できない' do
         @order_shipping_address.post_number = '1234567'
         @order_shipping_address.valid?
-        expect(@order_shipping_address.errors.full_messages).to include("Post number is invalid. Include hyphen(-)")
+        expect(@order_shipping_address.errors.full_messages).to include('Post number is invalid. Include hyphen(-)')
       end
       it 'post_numberhは半角数字出ないと保存できない' do
         @order_shipping_address.post_number = '１２３-４５６７'
         @order_shipping_address.valid?
-        expect(@order_shipping_address.errors.full_messages).to include("Post number is invalid. Include hyphen(-)")
+        expect(@order_shipping_address.errors.full_messages).to include('Post number is invalid. Include hyphen(-)')
       end
       it 'ship_from_organizationが空では保存できない' do
         @order_shipping_address.ship_from_organization_id = 1
@@ -56,24 +56,24 @@ RSpec.describe OrderShippingAddress, type: :model do
       it 'phone_number10桁以上でないと保存できない' do
         @order_shipping_address.phone_number = '123-456-789'
         @order_shipping_address.valid?
-        expect(@order_shipping_address.errors.full_messages).to include("Phone number is invalid.")
+        expect(@order_shipping_address.errors.full_messages).to include('Phone number is invalid.')
       end
       it 'phone_number11桁以内でないと保存できない' do
         @order_shipping_address.phone_number = '123-4567-78910'
         @order_shipping_address.valid?
-        expect(@order_shipping_address.errors.full_messages).to include("Phone number is invalid.")
+        expect(@order_shipping_address.errors.full_messages).to include('Phone number is invalid.')
       end
       it 'phone_number半角数値以外の文字（平仮名・漢字・英数字・記号）が含まれていると保存できない' do
         @order_shipping_address.phone_number = '１２３−４５６７−８９１０'
         @order_shipping_address.valid?
-        expect(@order_shipping_address.errors.full_messages).to include("Phone number is invalid.")
+        expect(@order_shipping_address.errors.full_messages).to include('Phone number is invalid.')
       end
       it 'phone_numberはハイフンが含まれていると保存できない' do
         @order_shipping_address.phone_number = '123-4567-8910'
         @order_shipping_address.valid?
-        expect(@order_shipping_address.errors.full_messages).to include("Phone number is invalid.")
+        expect(@order_shipping_address.errors.full_messages).to include('Phone number is invalid.')
       end
-      it "tokenが空では登録できないこと" do
+      it 'tokenが空では登録できないこと' do
         @order_shipping_address.token = nil
         @order_shipping_address.valid?
         expect(@order_shipping_address.errors.full_messages).to include("Token can't be blank")
