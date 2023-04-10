@@ -7,7 +7,7 @@ class OrderShippingAddress
     validates :post_number, format: { with: /\A[0-9]{3}-[0-9]{4}\z/, message: 'is invalid. Include hyphen(-)' }
     validates :ship_from_organization_id, numericality: { other_than: 1, message: "can't be blank" }
     validates :municipality, :house_number, :user_id, :item_id, :token
-    validates :phone_number, format: { with: /\A\d{11}\z/, message: 'is invalid.' }
+    validates :phone_number, format: { with: /\A\d{10,11}\z/, message: 'is invalid.' }
   end
 
   def save
